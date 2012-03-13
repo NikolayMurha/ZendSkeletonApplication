@@ -55,7 +55,7 @@ return array(
 
             // Using the PhpRenderer, which just handles html produced by php 
             // scripts
-            'Zend\View\Renderer\PhpRenderer' => array(
+            'SmartyModule\View\Renderer\SmartyRenderer' => array(
                 'parameters' => array(
                     'resolver' => 'Zend\View\Resolver\AggregateResolver',
                 ),
@@ -73,7 +73,7 @@ return array(
             'Zend\View\Resolver\TemplateMapResolver' => array(
                 'parameters' => array(
                     'map'  => array(
-                        'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+                        'layout/layout' => __DIR__ . '/../view/layout/layout.tpl',
                     ),
                 ),
             ),
@@ -81,6 +81,7 @@ return array(
             // very similar to include_path
             'Zend\View\Resolver\TemplatePathStack' => array(
                 'parameters' => array(
+                    'defaultSuffix' => 'tpl',
                     'paths'  => array(
                         'application' => __DIR__ . '/../view',
                     ),

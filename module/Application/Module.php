@@ -38,7 +38,15 @@ class Module implements AutoloaderProvider
         $app          = $e->getParam('application');
         $basePath     = $app->getRequest()->getBasePath();
         $locator      = $app->getLocator();
-        $renderer     = $locator->get('Zend\View\Renderer\PhpRenderer');
+        //this is trouble
+        $renderer     = $locator->get('SmartyModule\View\Renderer\SmartyRenderer');
+        
+        /**
+         * if i use this code - no troubles.
+         *  $strategy     = $locator->get('SmartyModule\View\Strategy\SmartyStrategy');
+         *  $renderer = $strategy->getRenderer();
+         */
+
         $renderer->plugin('basePath')->setBasePath($basePath);
     }
 }
