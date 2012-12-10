@@ -1,0 +1,6 @@
+{
+    "name": "Nikolay/zf2",
+    "require": {
+        "zendframework/zendframework": "2.0.5"
+    }
+}
