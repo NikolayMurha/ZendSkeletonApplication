@@ -1,6 +1,19 @@
 {
-    "name": "Nikolay/zf2",
+    "name": "murganikolay/zf2-skeleton",
+    "description": "Zend Framework sekeleton application with doctrine and smarty as template engine",
+    "authors": [
+        {
+            "name": "Murga Nikolay",
+            "email": "nikolay.m@randrmusic.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/MurgaNikolay/smarty-module.git"
+        }
+    ],
     "require": {
-        "zendframework/zendframework": "2.0.5"
+        "murganikolay/smarty-module" : "dev-master"
     }
 }
