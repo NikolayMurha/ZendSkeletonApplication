@@ -12,5 +12,9 @@
  */
 
 return array(
-    // ...
+    'Smarty' => array(
+        'parameters' => array(
+            'compile_dir' => __DIR__ . '/../../data/SmartyModule/templates_c',
+        ),
+    ),
 );

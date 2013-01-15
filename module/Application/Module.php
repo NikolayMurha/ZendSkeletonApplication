@@ -1,53 +1,42 @@
 <?php
+/**
+ * Zend Framework (http://framework.zend.com/)
+ *
+ * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ */
 
 namespace Application;
 
-use Zend\Module\Manager,
-    Zend\EventManager\StaticEventManager,
-    Zend\Module\Consumer\AutoloaderProvider;
+use Zend\Mvc\ModuleRouteListener;
+use Zend\Mvc\MvcEvent;
 
-class Module implements AutoloaderProvider
+class Module
 {
-    public function init(Manager $moduleManager)
+    public function onBootstrap(MvcEvent $e)
     {
-        $events = StaticEventManager::getInstance();
-        $events->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
-    }
+        $application = $e->getApplication();
+        $application->getServiceManager()->get('translator');
+        $eventManager        = $application->getEventManager();
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
 
-    public function getAutoloaderConfig()
-    {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
     }
 
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
-    
-    public function initializeView($e)
+
+    public function getAutoloaderConfig()
     {
-        $app          = $e->getParam('application');
-        $basePath     = $app->getRequest()->getBasePath();
-        $locator      = $app->getLocator();
-        //this is trouble
-        //$renderer     = $locator->get('SmartyModule\View\Renderer\SmartyRenderer');
-        
-        /**
-         * if i use this code - no troubles.
-         *  $strategy     = $locator->get('SmartyModule\View\Strategy\SmartyStrategy');
-         *  $renderer = $strategy->getRenderer();
-         */
-        $strategy     = $locator->get('SmartyModule\View\Strategy\SmartyStrategy');
-        $renderer = $strategy->getRenderer();
-        $renderer->plugin('basePath')->setBasePath($basePath);
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                ),
+            ),
+        );
     }
 }

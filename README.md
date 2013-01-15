@@ -10,33 +10,43 @@ looking to get their feet wet with ZF2.
 
 Installation
 ------------
-The easiest way to get a working copy of this project is to do a recursive
-clone:
 
-    git clone --recursive git://github.com/zendframework/ZendSkeletonApplication.git
+Using Composer (recommended)
+----------------------------
+The recommended way to get a working copy of this project is to clone the repository
+and use `composer` to install dependencies using the `create-project` command:
 
-After the clone is complete, set up a virtual host to point to the public/
-directory of the project and you should be ready to go!
+    curl -s https://getcomposer.org/installer | php --
+    php composer.phar create-project --repository-url="http://packages.zendframework.com" zendframework/skeleton-application path/to/install
 
-If you're wondering what the `--recursive` flag is, keep reading:
+Alternately, clone the repository and manually invoke `composer` using the shipped
+`composer.phar`:
 
-Git Submodules
---------------
-This project makes use of [Git submodules](http://book.git-scm.com/5_submodules.html).
-Utilizing Git submodules allows us to reference an exact commit in the upstream
-[zendframework/zf2](https://github.com/zendframework/zf2) repository and ensure
-that those who have cloned the project have that same commit checked out. This
-provides several benefits:
+    cd my/project/dir
+    git clone git://github.com/zendframework/ZendSkeletonApplication.git
+    cd ZendSkeletonApplication
+    php composer.phar self-update
+    php composer.phar install
 
-* Developers do not have to worry about which commit of the zf2 project to have
-  checked out for this project to work.
-* No additional steps to "install" Zend Framework are needed; it "just works"
-  after a cloning the project.
+(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
+available.)
 
-There are a couple of mild caveats to be aware of:
+Another alternative for downloading the project is to grab it via `curl`, and
+then pass it to `tar`:
 
-* Be sure to always run `git submodule update` after pulling, as merge/rebase
-  does not automatically update the checked out commit in submodules if it has
-  been changed.
-* The initial clone will be a bit slower, due to it having to pull down a
-  separate copy of ZF2 from what you already have.
+    cd my/project/dir
+    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
+
+You would then invoke `composer` to install dependencies per the previous
+example.
+
+Using Git submodules
+--------------------
+Alternatively, you can install using native git submodules:
+
+    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
+
+Virtual Host
+------------
+Afterwards, set up a virtual host to point to the public/ directory of the
+project and you should be ready to go!

@@ -15,7 +15,7 @@
     "`$basePath`/images/favicon.ico"])}
 
 
-    {$this->headScript()->appendFile("`$basePath`/js/html5.js', 'text/javascript", ['conditional' => 'lt IE9'])}
+    {$this->headScript()->appendFile("`$basePath`/js/html5.js", "text/javascript", ['conditional' => 'lt IE9'])}
     {$this->headTitle('ZF2 Skeleton Application')}
 
     {$this->headMeta()}
