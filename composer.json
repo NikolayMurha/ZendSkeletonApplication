@@ -1,7 +1,7 @@
 {
     "name": "murganikolay/zf2-skeleton",
     "description": "Zend Framework sekeleton application with doctrine and smarty as template engine",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Murga Nikolay",
@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "murganikolay/smarty-module" : "dev-master",
-        "doctrine/doctrine-module": "dev-master"
+        "zendframework/zendframework": "2.*",
+        "murganikolay/smarty-module" : "1.*",
+        "doctrine/doctrine-module": "0.7.*"
     }
 }
