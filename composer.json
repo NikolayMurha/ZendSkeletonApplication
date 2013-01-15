@@ -8,12 +8,6 @@
             "email": "nikolay.m@randrmusic.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/MurgaNikolay/smarty-module.git"
-        }
-    ],
     "require": {
         "murganikolay/smarty-module" : "dev-master",
         "doctrine/doctrine-module": "dev-master"
