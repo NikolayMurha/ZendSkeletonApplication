@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Local Configuration Override
  *
@@ -10,11 +11,24 @@
  * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
  * credentials from accidentally being comitted into version control.
  */
-
 return array(
     'Smarty' => array(
         'parameters' => array(
             'compile_dir' => __DIR__ . '/../../data/SmartyModule/templates_c',
         ),
+    ),
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'driverClass' => 'Doctrine\DBAL\Driver\PDOPgSql\Driver',
+                'params' => array(
+                    'host'     => 'localhost',
+                    'port'     => '5432',
+                    'user'     => 'postgres',
+                    'password' => 'postgres',
+                    'dbname'   => 'gifts',
+                )
+            )
+        )
     ),
 );
