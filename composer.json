@@ -9,8 +9,10 @@
         }
     ],
     "require": {
+        "doctrine/migrations": "v1.0-ALPHA1",
+        "murganikolay/doctrine-migrations-module" : "1.0.0",
         "zendframework/zendframework": "2.*",
         "murganikolay/smarty-module" : "1.*",
-        "doctrine/doctrine-module": "0.7.*"
+        "doctrine/doctrine-orm-module": "0.7.*"
     }
 }
