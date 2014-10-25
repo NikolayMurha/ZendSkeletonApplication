@@ -1,60 +1,47 @@
 <h1>A 404 error occurred</h1>
-<h2><?php echo $this->message ?></h2>
+<h2>{$this->message}</h2>
 
-<?php if (isset($this->reason) && $this->reason): ?>
 
-<?php
-$reasonMessage= '';
-switch ($this->reason) {
-    case 'error-controller-cannot-dispatch':
-        $reasonMessage = 'The requested controller was unable to dispatch the request.';
-        break;
-    case 'error-controller-not-found':
-        $reasonMessage = 'The requested controller could not be mapped to an existing controller class.';
-        break;
-    case 'error-controller-invalid':
-        $reasonMessage = 'The requested controller was not dispatchable.';
-        break;
-    case 'error-router-no-match':
-        $reasonMessage = 'The requested URL could not be matched by routing.';
-        break;
-    default:
-        $reasonMessage = 'We cannot determine at this time why a 404 was generated.';
-        break;
-}
-?>
+{if isset($this->reason)}
+    {if $this->reason == 'error-controller-cannot-dispatch'}
+            {assign var="reasonMessage"  value="The requested controller was unable to dispatch the request."}
+    {elseif $this->reason == 'error-controller-not-found'}
+            {assign var='reasonMessage' value="The requested controller could not be mapped to an existing controller class."}
+    {elseif $this->reason == 'error-controller-invalid'}
+            {assign var="reasonMessage" value="The requested controller was not dispatchable."}
+    {elseif $this->reason == 'error-router-no-match'}
+            {assign var="reasonMessage" value="The requested URL could not be matched by routing."}
+    {else}
+            {assign var="reasonMessage" value="We cannot determine at this time why a 404 was generated."}
+    {/if}
+{/if}
 
-<p><?php echo $reasonMessage ?></p>
+<p>{$reasonMessage}</p>
 
-<?php endif ?>
 
-<?php if (isset($this->controller) && $this->controller): ?>
+{if isset($this->controller)}
 
-<dl>
-    <dt>Controller:</dt>
-    <dd><?php $this->escape($this->controller) ?>
-<?php
-if (isset($this->controller_class) 
-    && $this->controller_class
-    && $this->controller_class != $this->controller
-) {
-    echo " (resolves to " . $this->escape($this->controller_class) . ")";
-}
-?>
-</dd>
+    <dl>
+        <dt>Controller:</dt>
+        <dd>{$this->controller}
 
-<?php endif ?>
+    {if isset($this->controller_class)
+        && $this->controller_class != $this->controller}
+        resolves to ({$this->controller_class})
+    {/if}
+    </dd>
+{/if}
 
-<?php if (isset($this->exception) && $this->exception): ?>
+{if isset($this->exception)}
 
-<h2>Exception:</h2>
+    <h2>Exception:</h2>
 
-<p><b><?php echo $this->escape($this->exception->getMessage()) ?></b></p>
+    <p><b>{$this->exception->getMessage()}</b></p>
 
-<h3>Stack trace</h3>
+    <h3>Stack trace</h3>
 
-<pre>
-<?php echo $this->exception->getTraceAsString() ?>
-</pre>
+    <pre>
+    {$this->exception->getTraceAsString()}
+    </pre>
 
-<?php endif ?>
+{/if}
